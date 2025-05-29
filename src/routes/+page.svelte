@@ -4,6 +4,7 @@
 	import { Button } from '@/components/ui/button';
 	import { Slider } from '$lib/components/ui/slider';
 	import { Textarea } from '$lib/components/ui/textarea';
+	import { Switch } from '$lib/components/ui/switch/index.js';
 	import * as Card from '$lib/components/ui/card';
 	import * as Collapsible from '$lib/components/ui/collapsible';
 	import * as Select from '$lib/components/ui/select';
@@ -20,6 +21,9 @@
 	let rendered = $state(false);
 	let downloadUrl = $state('');
 	let size = $state(256);
+	let shape: 'square' | 'circle' = $state('square');
+	let haveBackgroundRoundedEdges = $state(false);
+	let haveGappedModules = $state(false);
 	let backgroundColor = $state('#FFFFFF');
 	let color = $state('#000000');
 	let downloadUrlFileFormat: 'png' | 'svg' | 'jpg' | 'jpeg' | 'webp' | undefined = $state('png');
@@ -51,12 +55,21 @@
 		{ value: 'nopass', label: 'No Password' }
 	];
 
+	const shapes = [
+		{ value: 'square', label: 'Square' },
+		{ value: 'circle', label: 'Circle' }
+	];
+
 	const triggerContentFileFormat = $derived(
 		fileFormats.find((f) => f.value === downloadUrlFileFormat)?.label ?? 'Select a file format'
 	);
 
 	const triggerContentEncryptions = $derived(
 		encryptions.find((e) => e.value === qrCodeData.wifi.encryption)?.label ?? 'Select an encryption'
+	);
+
+	const triggerContentShapes = $derived(
+		shapes.find((s) => s.value === shape)?.label ?? 'Select a shape'
 	);
 
 	const handleDownloadUrlGenerated = (url = '') => {
@@ -213,23 +226,43 @@
 						<div
 							class="mt-4 flex w-full flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between"
 						>
-							<div class="flex flex-col gap-1.5">
-								<Label for="fileFormat">File Format</Label>
-								<Select.Root type="single" name="fileFormat" bind:value={downloadUrlFileFormat}>
-									<Select.Trigger class="w-[180px]">
-										{triggerContentFileFormat}
-									</Select.Trigger>
-									<Select.Content>
-										<Select.Group>
-											<Select.Label>File Formats</Select.Label>
-											{#each fileFormats as format (format.value)}
-												<Select.Item value={format.value} label={format.label}>
-													{format.label}
-												</Select.Item>
-											{/each}
-										</Select.Group>
-									</Select.Content>
-								</Select.Root>
+							<div class="flex flex-row items-center justify-start gap-2">
+								<div class="flex flex-col gap-1.5">
+									<Label for="fileFormat">File Format</Label>
+									<Select.Root type="single" name="fileFormat" bind:value={downloadUrlFileFormat}>
+										<Select.Trigger class="w-[180px]">
+											{triggerContentFileFormat}
+										</Select.Trigger>
+										<Select.Content>
+											<Select.Group>
+												<Select.Label>File Formats</Select.Label>
+												{#each fileFormats as format (format.value)}
+													<Select.Item value={format.value} label={format.label}>
+														{format.label}
+													</Select.Item>
+												{/each}
+											</Select.Group>
+										</Select.Content>
+									</Select.Root>
+								</div>
+								<div class="flex flex-col gap-1.5">
+									<Label for="shape">Shape</Label>
+									<Select.Root type="single" name="shape" bind:value={shape}>
+										<Select.Trigger class="w-[180px]">
+											{triggerContentShapes}
+										</Select.Trigger>
+										<Select.Content>
+											<Select.Group>
+												<Select.Label>Shapes</Select.Label>
+												{#each shapes as shape (shape.value)}
+													<Select.Item value={shape.value} label={shape.label}>
+														{shape.label}
+													</Select.Item>
+												{/each}
+											</Select.Group>
+										</Select.Content>
+									</Select.Root>
+								</div>
 							</div>
 							<div class="flex w-full flex-col gap-4 rounded-md border p-3 sm:w-fit sm:flex-row">
 								<div>
@@ -238,6 +271,16 @@
 								<div>
 									<ColorPicker bind:hex={color} label="Foreground Color" />
 								</div>
+							</div>
+						</div>
+						<div class="mt-4 flex flex-col">
+							<div class="mt-4 flex items-center space-x-2">
+								<Switch id="rounded" bind:checked={haveBackgroundRoundedEdges} />
+								<Label for="rounded">Rounded</Label>
+							</div>
+							<div class="mt-4 flex items-center space-x-2">
+								<Switch id="gapped-modules" bind:checked={haveGappedModules} />
+								<Label for="gapped-modules">Gapped Modules</Label>
 							</div>
 						</div>
 					</Collapsible.Content>
@@ -262,7 +305,9 @@
 							bind:backgroundColor
 							bind:color
 							bind:downloadUrlFileFormat
-							isJoin
+							bind:shape
+							bind:haveBackgroundRoundedEdges
+							bind:haveGappedModules
 							dispatchDownloadUrl
 							on:downloadUrlGenerated={(event) => handleDownloadUrlGenerated(event.detail.url)}
 						/>
