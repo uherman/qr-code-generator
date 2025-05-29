@@ -291,4 +291,8 @@
 	:global(.color) {
 		border: 1px solid var(--primary);
 	}
+
+	:global(.wrapper .text-input) {
+		color: black;
+	}
 </style>
