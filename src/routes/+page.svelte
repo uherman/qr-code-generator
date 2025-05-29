@@ -13,6 +13,7 @@
 	import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import QRCode from '@castlenine/svelte-qrcode';
+	import { blur } from 'svelte/transition';
 	import { formatQrCodeData, type QrCodeData, type QrCodeFormat } from '@/utils/qr-code-format';
 
 	let data = $state('https://qr-code-generator-seven-beryl.vercel.app');
@@ -75,8 +76,6 @@
 		}
 
 		data = formattedData;
-		console.log('QR Code Data:', data);
-
 		rendered = false;
 		const timeout = setTimeout(() => ((rendered = true), clearTimeout(timeout)), 0);
 	};
@@ -268,7 +267,7 @@
 							on:downloadUrlGenerated={(event) => handleDownloadUrlGenerated(event.detail.url)}
 						/>
 					</span>
-					<img width="256" alt="generated qr-code" src={downloadUrl} />
+					<img in:blur={{ duration: 300 }} width="256" alt="generated qr-code" src={downloadUrl} />
 				</Card.Content>
 				<Card.Footer class="flex flex-row justify-center">
 					{#if downloadUrl}
