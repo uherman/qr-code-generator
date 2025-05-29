@@ -226,7 +226,7 @@
 						<div
 							class="mt-4 flex w-full flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between"
 						>
-							<div class="flex flex-row items-center justify-start gap-2">
+							<div class="flex flex-col items-center justify-start gap-2 md:flex-row">
 								<div class="flex flex-col gap-1.5">
 									<Label for="fileFormat">File Format</Label>
 									<Select.Root type="single" name="fileFormat" bind:value={downloadUrlFileFormat}>
