@@ -8,7 +8,7 @@
 		<div class="w-full" id="navbar-default">
 			<ul class="mt-4 flex flex-row justify-end hover:text-indigo-600">
 				<li>
-					<Button href="https://github.com/uherman" target="_blank">
+					<Button href="https://github.com/uherman/qr-code-generator" target="_blank">
 						<GithubIcon class="size-4" />
 						GitHub</Button
 					>
