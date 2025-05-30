@@ -84,13 +84,7 @@
 		</div>
 	</Tabs.Content>
 	<Tabs.Content value="text" class="w-full">
-		<Input
-			class="mt-2"
-			type="text"
-			id="text"
-			placeholder="Enter text"
-			bind:value={qrCodeData.text}
-		/>
+		<Textarea class="mt-2" id="text" placeholder="Enter text" bind:value={qrCodeData.text} />
 	</Tabs.Content>
 	<Tabs.Content value="email" class="w-full">
 		<Input
