@@ -53,7 +53,7 @@
 	};
 </script>
 
-<div class="flex h-full w-full flex-col items-center justify-center gap-10">
+<div class="flex h-full w-full flex-col items-center justify-center gap-8">
 	<Card.Root class="w-full">
 		<Card.Header class="flex flex-col items-center justify-center">
 			<Card.Title>Create a QR Code</Card.Title>
@@ -78,7 +78,7 @@
 		</Card.Footer>
 	</Card.Root>
 
-	<div class="mt-10 flex w-full flex-col items-center justify-center">
+	<div class="flex w-full flex-col items-center justify-center">
 		{#if rendered}
 			<Card.Root class="flex w-full flex-col items-center justify-center sm:w-fit">
 				<Card.Content>
