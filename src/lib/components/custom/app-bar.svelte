@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Button from '../ui/button/button.svelte';
 	import GithubIcon from '@lucide/svelte/icons/github';
+	import CoffeeIcon from '@lucide/svelte/icons/coffee';
 	import LightSwitch from './light-switch.svelte';
 </script>
 
@@ -13,6 +14,12 @@
 						<GithubIcon class="size-4" />
 						GitHub</Button
 					>
+				</li>
+				<li>
+					<Button href="https://www.buymeacoffee.com/uherman" target="_blank">
+						<CoffeeIcon class="size-4" />
+						Buy me a coffee
+					</Button>
 				</li>
 				<li>
 					<LightSwitch />
