@@ -30,7 +30,7 @@
 <Tabs.Root
 	value="url"
 	onValueChange={(value) => (qrCodeFormat = value as QrCodeFormat)}
-	class="flex w-full items-center justify-center"
+	class="flex w-fit items-center justify-center"
 >
 	<Tabs.List>
 		<Tabs.Trigger value="url">Url</Tabs.Trigger>
@@ -40,7 +40,7 @@
 		<Tabs.Trigger value="phone">Phone</Tabs.Trigger>
 		<Tabs.Trigger value="sms">Sms</Tabs.Trigger>
 	</Tabs.List>
-	<Tabs.Content value="url" class="w-full sm:w-1/2">
+	<Tabs.Content value="url" class="w-full">
 		<Input
 			class="mt-2"
 			type="url"
@@ -49,7 +49,7 @@
 			bind:value={qrCodeData.url}
 		/>
 	</Tabs.Content>
-	<Tabs.Content value="wifi" class="w-full sm:w-1/2">
+	<Tabs.Content value="wifi" class="w-full">
 		<Input
 			class="mt-2"
 			type="text"
@@ -59,7 +59,7 @@
 		/>
 		<div class="mt-2 flex w-full flex-row items-center justify-start gap-2">
 			<Select.Root type="single" name="encryption" bind:value={qrCodeData.wifi.encryption}>
-				<Select.Trigger class="w-[180px]">
+				<Select.Trigger class="w-fit">
 					{triggerContentEncryptions}
 				</Select.Trigger>
 				<Select.Content>
@@ -83,7 +83,7 @@
 			{/if}
 		</div>
 	</Tabs.Content>
-	<Tabs.Content value="text" class="w-full sm:w-1/2">
+	<Tabs.Content value="text" class="w-full">
 		<Input
 			class="mt-2"
 			type="text"
@@ -92,7 +92,7 @@
 			bind:value={qrCodeData.text}
 		/>
 	</Tabs.Content>
-	<Tabs.Content value="email" class="w-full sm:w-1/2">
+	<Tabs.Content value="email" class="w-full">
 		<Input
 			class="mt-2"
 			type="email"
@@ -101,7 +101,7 @@
 			bind:value={qrCodeData.email}
 		/>
 	</Tabs.Content>
-	<Tabs.Content value="phone" class="w-full sm:w-1/2">
+	<Tabs.Content value="phone" class="w-full">
 		<Input
 			class="mt-2"
 			type="tel"
@@ -110,7 +110,7 @@
 			bind:value={qrCodeData.phone}
 		/>
 	</Tabs.Content>
-	<Tabs.Content value="sms" class="w-full sm:w-1/2">
+	<Tabs.Content value="sms" class="w-full">
 		<Input
 			required
 			class="mt-2"
