@@ -6,7 +6,7 @@
 </script>
 
 <nav>
-	<div class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between pb-4">
+	<div class="mx-auto flex flex-wrap items-center justify-between pb-4">
 		<div class="w-full" id="navbar-default">
 			<ul class="mt-4 flex flex-row justify-end gap-4">
 				<li>
