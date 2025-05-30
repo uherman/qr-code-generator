@@ -8,6 +8,7 @@
 	import ChevronUpIcon from '@lucide/svelte/icons/chevron-up';
 	import ColorPicker from 'svelte-awesome-color-picker';
 	import { type QrCodeData } from '@/utils/qr-code-format';
+	import Input from '../ui/input/input.svelte';
 
 	export type AdvancedSettings = {
 		size: number;
@@ -70,7 +71,8 @@
 			<Label for="size" class="mt-4">QR-Code Size</Label>
 			<div class="flex flex-row items-center justify-between gap-2 px-1">
 				<Slider id="size" type="single" bind:value={options.size} max={1000} step={1} />
-				<span class="text-muted-foreground text-sm">{options.size}px</span>
+				<Input bind:value={options.size} type="number" min={1} max={1000} class="w-[80px]" />
+				<span class="text-muted-foreground text-sm">px</span>
 			</div>
 		</div>
 		<div
