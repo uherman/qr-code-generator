@@ -26,7 +26,7 @@
 
 <ModeWatcher />
 <Toaster richColors position="top-center" />
-<div class="container mx-auto p-4">
+<div class="mx-auto w-full max-w-3xl px-4 py-6">
 	<AppBar />
 	{@render children()}
 

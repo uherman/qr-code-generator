@@ -57,18 +57,20 @@
 
 <Collapsible.Root class="w-full" bind:open>
 	<Collapsible.Trigger class="w-full">
-		<div class="flex w-full cursor-pointer flex-row items-center justify-center">
+		<div
+			class="text-muted-foreground hover:text-foreground flex w-full cursor-pointer flex-row items-center justify-center gap-1 py-1 text-sm transition-colors"
+		>
 			Advanced settings
 			{#if open}
-				<ChevronUpIcon />
+				<ChevronUpIcon class="size-4" />
 			{:else}
-				<ChevronDownIcon />
+				<ChevronDownIcon class="size-4" />
 			{/if}
 		</div>
 	</Collapsible.Trigger>
-	<Collapsible.Content>
-		<div>
-			<Label for="size" class="mt-4">QR-Code Size</Label>
+	<Collapsible.Content class="pt-2">
+		<div class="flex flex-col gap-1.5">
+			<Label for="size">QR-Code Size</Label>
 			<div class="flex flex-row items-center justify-between gap-2 px-1">
 				<Slider id="size" type="single" bind:value={options.size} max={1000} step={1} />
 				<Input bind:value={options.size} type="number" min={1} max={1000} class="w-[80px]" />
@@ -76,13 +78,13 @@
 			</div>
 		</div>
 		<div
-			class="mt-4 flex w-full flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between"
+			class="mt-6 flex w-full flex-col items-stretch gap-4 md:flex-row md:items-end md:justify-between"
 		>
-			<div class="flex flex-col items-center justify-start gap-2 md:flex-row">
+			<div class="flex flex-col gap-4 sm:flex-row">
 				<div class="flex flex-col gap-1.5">
 					<Label for="fileFormat">File Format</Label>
 					<Select.Root type="single" name="fileFormat" bind:value={options.downloadUrlFileFormat}>
-						<Select.Trigger class="w-[180px]">
+						<Select.Trigger class="w-full sm:w-[160px]">
 							{triggerContentFileFormat}
 						</Select.Trigger>
 						<Select.Content>
@@ -100,7 +102,7 @@
 				<div class="flex flex-col gap-1.5">
 					<Label for="shape">Shape</Label>
 					<Select.Root type="single" name="shape" bind:value={options.shape}>
-						<Select.Trigger class="w-[180px]">
+						<Select.Trigger class="w-full sm:w-[160px]">
 							{triggerContentShapes}
 						</Select.Trigger>
 						<Select.Content>
@@ -116,7 +118,7 @@
 					</Select.Root>
 				</div>
 			</div>
-			<div class="flex w-full flex-col gap-4 rounded-md border p-3 sm:w-fit sm:flex-row">
+			<div class="flex w-full flex-col gap-4 rounded-md border p-3 sm:flex-row md:w-fit">
 				<div>
 					<ColorPicker bind:hex={options.backgroundColor} label="Background Color" />
 				</div>
@@ -125,12 +127,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="mt-4 flex flex-col">
-			<div class="mt-4 flex items-center space-x-2">
+		<div class="mt-6 flex flex-col gap-4">
+			<div class="flex items-center space-x-2">
 				<Switch id="rounded" bind:checked={options.haveBackgroundRoundedEdges} />
 				<Label for="rounded">Rounded</Label>
 			</div>
-			<div class="mt-4 flex items-center space-x-2">
+			<div class="flex items-center space-x-2">
 				<Switch id="gapped-modules" bind:checked={options.haveGappedModules} />
 				<Label for="gapped-modules">Gapped Modules</Label>
 			</div>

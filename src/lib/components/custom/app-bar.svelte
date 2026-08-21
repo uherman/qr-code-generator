@@ -6,9 +6,9 @@
 </script>
 
 <nav>
-	<div class="mx-auto flex flex-wrap items-center justify-between pb-4">
+	<div class="mx-auto flex flex-wrap items-center justify-between pb-6">
 		<div class="w-full" id="navbar-default">
-			<ul class="mt-4 flex flex-row justify-end gap-4">
+			<ul class="flex flex-row flex-wrap items-center justify-end gap-2 sm:gap-3">
 				<li>
 					<Button href="https://github.com/uherman/qr-code-generator" target="_blank">
 						<GithubIcon class="size-4" />
