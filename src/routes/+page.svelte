@@ -53,35 +53,27 @@
 	};
 </script>
 
-<div class="flex h-full w-full flex-col items-center justify-center gap-8">
-	<Card.Root class="w-full">
-		<Card.Header class="flex flex-col items-center justify-center">
+<div class="flex w-full flex-col items-center gap-8 pb-24">
+	<Card.Root class="w-full gap-6">
+		<Card.Header class="flex flex-col items-center justify-center gap-1 text-center">
 			<Card.Title>Create a QR Code</Card.Title>
 			<Card.Description>This tool is and will always be free.</Card.Description>
 		</Card.Header>
-		<Card.Content class="flex w-full flex-col items-center justify-center gap-5">
-			<div class="flex w-full flex-col items-center justify-center">
-				<QrCodeTypeTabs bind:qrCodeFormat bind:qrCodeData />
-			</div>
-			<div class="flex w-full flex-col items-center justify-center">
-				<QrCodeAdvancedSettings
-					bind:options
-					bind:data={qrCodeData}
-					bind:open={advancedOptionsOpen}
-				/>
-			</div>
+		<Card.Content class="flex w-full flex-col items-center gap-6">
+			<QrCodeTypeTabs bind:qrCodeFormat bind:qrCodeData />
+			<QrCodeAdvancedSettings bind:options bind:data={qrCodeData} bind:open={advancedOptionsOpen} />
 		</Card.Content>
-		<Card.Footer>
-			<div class="mt-4 flex w-full items-center justify-center">
-				<Button class="cursor-pointer" onclick={renderQrCode}>Create QR code</Button>
-			</div>
+		<Card.Footer class="flex w-full justify-center">
+			<Button class="w-full cursor-pointer sm:w-auto sm:min-w-48" onclick={renderQrCode}>
+				Create QR code
+			</Button>
 		</Card.Footer>
 	</Card.Root>
 
-	<div class="flex w-full flex-col items-center justify-center">
+	<div class="flex w-full flex-col items-center">
 		{#if rendered}
-			<Card.Root class="flex w-full flex-col items-center justify-center sm:w-fit">
-				<Card.Content>
+			<Card.Root class="flex w-full flex-col items-center gap-6 sm:w-auto">
+				<Card.Content class="flex items-center justify-center">
 					<span class="hidden">
 						<QRCode
 							bind:data
@@ -96,12 +88,16 @@
 							on:downloadUrlGenerated={(event) => handleDownloadUrlGenerated(event.detail.url)}
 						/>
 					</span>
-					<img in:blur={{ duration: 300 }} width="256" alt="generated qr-code" src={downloadUrl} />
+					<img
+						in:blur={{ duration: 300 }}
+						class="h-auto w-64 max-w-full"
+						alt="generated qr-code"
+						src={downloadUrl}
+					/>
 				</Card.Content>
-				<Card.Footer class="flex flex-row justify-center">
+				<Card.Footer class="flex w-full flex-row justify-center">
 					{#if downloadUrl}
 						<Button
-							class=""
 							href={downloadUrl}
 							download={`qr-code.${options.downloadUrlFileFormat}`}
 							target="_blank"

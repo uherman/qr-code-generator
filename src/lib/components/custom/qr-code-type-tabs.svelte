@@ -30,9 +30,9 @@
 <Tabs.Root
 	value="url"
 	onValueChange={(value) => (qrCodeFormat = value as QrCodeFormat)}
-	class="flex w-fit items-center justify-center"
+	class="flex w-full flex-col items-center gap-2"
 >
-	<Tabs.List>
+	<Tabs.List class="flex-wrap">
 		<Tabs.Trigger value="url">Url</Tabs.Trigger>
 		<Tabs.Trigger value="wifi">Wifi</Tabs.Trigger>
 		<Tabs.Trigger value="text">Text</Tabs.Trigger>
@@ -40,24 +40,12 @@
 		<Tabs.Trigger value="phone">Phone</Tabs.Trigger>
 		<Tabs.Trigger value="sms">Sms</Tabs.Trigger>
 	</Tabs.List>
-	<Tabs.Content value="url" class="w-full">
-		<Input
-			class="mt-2"
-			type="url"
-			id="url"
-			placeholder="https://example.com"
-			bind:value={qrCodeData.url}
-		/>
+	<Tabs.Content value="url" class="w-full sm:max-w-md">
+		<Input type="url" id="url" placeholder="https://example.com" bind:value={qrCodeData.url} />
 	</Tabs.Content>
-	<Tabs.Content value="wifi" class="w-full">
-		<Input
-			class="mt-2"
-			type="text"
-			id="ssid"
-			placeholder="SSID"
-			bind:value={qrCodeData.wifi.ssid}
-		/>
-		<div class="mt-2 flex w-full flex-row items-center justify-start gap-2">
+	<Tabs.Content value="wifi" class="flex w-full flex-col gap-2 sm:max-w-md">
+		<Input type="text" id="ssid" placeholder="SSID" bind:value={qrCodeData.wifi.ssid} />
+		<div class="flex w-full flex-row items-center justify-start gap-2">
 			<Select.Root type="single" name="encryption" bind:value={qrCodeData.wifi.encryption}>
 				<Select.Trigger class="w-fit">
 					{triggerContentEncryptions}
@@ -83,41 +71,28 @@
 			{/if}
 		</div>
 	</Tabs.Content>
-	<Tabs.Content value="text" class="w-full">
-		<Textarea class="mt-2" id="text" placeholder="Enter text" bind:value={qrCodeData.text} />
+	<Tabs.Content value="text" class="w-full sm:max-w-md">
+		<Textarea id="text" placeholder="Enter text" bind:value={qrCodeData.text} />
 	</Tabs.Content>
-	<Tabs.Content value="email" class="w-full">
+	<Tabs.Content value="email" class="w-full sm:max-w-md">
 		<Input
-			class="mt-2"
 			type="email"
 			id="email"
 			placeholder="Enter email address"
 			bind:value={qrCodeData.email}
 		/>
 	</Tabs.Content>
-	<Tabs.Content value="phone" class="w-full">
-		<Input
-			class="mt-2"
-			type="tel"
-			id="phone"
-			placeholder="Enter phone number"
-			bind:value={qrCodeData.phone}
-		/>
+	<Tabs.Content value="phone" class="w-full sm:max-w-md">
+		<Input type="tel" id="phone" placeholder="Enter phone number" bind:value={qrCodeData.phone} />
 	</Tabs.Content>
-	<Tabs.Content value="sms" class="w-full">
+	<Tabs.Content value="sms" class="flex w-full flex-col gap-2 sm:max-w-md">
 		<Input
 			required
-			class="mt-2"
 			type="tel"
 			id="sms"
 			placeholder="Enter phone number for SMS"
 			bind:value={qrCodeData.sms.phone}
 		/>
-		<Textarea
-			class="mt-2"
-			id="smsMessage"
-			placeholder="Enter SMS message"
-			bind:value={qrCodeData.sms.message}
-		/>
+		<Textarea id="smsMessage" placeholder="Enter SMS message" bind:value={qrCodeData.sms.message} />
 	</Tabs.Content>
 </Tabs.Root>
